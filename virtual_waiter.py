@@ -101,12 +101,12 @@ def send_mail(name,contact,email,people_count,timing,code):
     s.starttls()
 
     # Authentication
-    s.login("mitchellanthony1999august@gmail.com", "xcamjbbnuebsfqiv")
+    s.login("YOUR MAIL ID", "YOUR APP PASS KEY")
 
     msg = MIMEMultipart()
     message_template = read_template('message.txt')
     message = message_template.substitute(PERSON_NAME=name.title(),COUPON_CODE=code,NUMBER_OF_PEOPLE=people_count,TIMING=timing,MOBILE_NUMBER=contact)
-    msg['From'] = 'mitchellanthony1999august@gmail.com'
+    msg['From'] = 'YOUR MAIL ID'
     msg['To'] = email
     msg['Subject'] = "CONFORMATION MAIL"
     # add in the message body
@@ -120,7 +120,7 @@ def send_mail(name,contact,email,people_count,timing,code):
 
 
 def take_user_data(name):        #OPTION 3 FUNCTIONALITY
-    owner_mail_id='mitrya20@gmail.com'
+    owner_mail_id='SECOND MAIL ON WHICH CONFIRMATION NOTIFICATION IS SENT '
     list_of_code = random.sample(range(1, 500), 2)
     data_dictionary={}
     sleep(2)
@@ -158,10 +158,7 @@ def take_user_data(name):        #OPTION 3 FUNCTIONALITY
 
 def menu_selector(name):            #For showing menu
 
-    menu=['Biryani', 'Paneer pulao', 'Fried Rice', 'Pineapple Raita', 'Murg Mussalam', 'Chicken Kadahi', 'Chicken Nawabi', 'Phirini', 'Chicken Tikka ', 'Mutton Curry', 'Kalmi kebabs', 'Tandoori Chicken', 'Haryali Chicken', 'Chicken kebabs', 'kebabs salad', 'salad', 'Sizzler', 'Butter Chicken', 'Kadhai Paneer', 'Noodles', 'Gobi Manchurian', 'Paneer Tikka Masala', 'Soup', 'Finger Chips', 'Choley Bhaturey', 'Aloo Gobi', 'Dal Tadka', 'Dal Makhani', 'Naan', 'Lachcha Paratha', 'Coffee', 'Lassi', 'Iced Coffee', 'Sundae']
-    print('''
-    
-    ''')
+    menu=['Biryani', 'Paneer pulao', 'Fried Rice', 'Pineapple Raita', 'Murg Mussalam', 'Chicken Kadahi', 'Chicken Nawabi', 'Phirini', 'Chicken Tikka ', 'Mutton Curry', 'Kalmi kebabs', 'Tandoori Chicken', 'Haryali Chicken', 'Chicken kebabs', 'kebabs salad', 'Sizzler', 'Butter Chicken', 'Kadhai Paneer', 'Noodles', 'Gobi Manchurian', 'Paneer Tikka Masala', 'Soup', 'Finger Chips', 'Choley Bhaturey', 'Aloo Gobi', 'Dal Tadka', 'Dal Makhani', 'Naan', 'Lachcha Paratha', 'Lassi', 'Sundae']
     sleep(2)
     print("Star Waiter : Today's special is",random.choice(menu)," and people love it 😃")
     display_pdf()
@@ -245,6 +242,8 @@ def rest_of_the_option(name):
             about(name)
 
         elif 'book table' in option or 'book a table' in option or 'for booking table' in option or 'booking' in option or 'book' in option:
+            sleep(2)
+            print("Star Waiter : You have to provide us with some details for booking purpose.....")
             take_user_data(name)
 
 
@@ -276,17 +275,18 @@ def start_function():
     print("Star Waiter : Give your answer in (Yes or no) ")
     user_response = input("Visitor : ")
 
+    # CONDITION WHEN VISITOR WANTS TO TAKE 10% DISCOUNT
     if user_response.lower()=='yes':
             sleep(2)
             print("Star Waiter : For booking a table at Zaffran , please provide us with following details..........")
             take_user_data(name)
             rest_of_the_option(name)
-
+    # CONDITION WHEN VISITOR DON'T WANTS TO TAKE 10% DISCOUNT
     else:
         sleep(2)
         print("Star Waiter : No Problem ......", name)
         sleep(2)
-        print("Star Waiter : So, these are the options on which I can assist you ...... now tell me with which option you want to proceed ....... 👇")
+        print("Star Waiter : So, these are the options on which I can assist you ......  👇")
         main_function(name)
 
 start_function()
